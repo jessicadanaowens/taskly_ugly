@@ -45,6 +45,11 @@ feature 'Task lists' do
     create_tasks
     create_user
     login_user
+    first(:link, "Edit").click
+    fill_in "Name", with: "Play List"
+    click_on "Update Task List"
+    expect(page).to have_content "Your task list was successfully updated!"
+    expect(page).to have_content "Play List"
   end
 
 end

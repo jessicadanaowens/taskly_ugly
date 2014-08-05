@@ -1,0 +1,19 @@
+<h1>Edit a Task List</h1>
+<p class="maroon">
+  <% if @task_list.errors.any? %>
+    <% @task_list.errors.messages[:name].each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+</p>
+<%= form_for @task_list, url: "/task_lists/#{@task_list.id}", method: :patch, html: {class: "create_task_form"} do |f| %>
+  <div>
+    <%= f.label :name %>
+    <br>
+    <%= f.text_field :name, autofocus: true, value: @task_list.name %>
+  </div>
+  <div>
+    <br>
+    <%= f.submit "Update Task List" %>
+  </div>
+<% end %>

@@ -3,6 +3,17 @@
  *= require_self
  */
 
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
 .container {
   width: 960px;
   margin: 0 auto;
@@ -75,6 +86,8 @@ main {
 }
 
 .task-list {
+  width: 100%;
+  display: block;
   padding: 1em;
   & + & {
     border-top: 1px solid darkblue;
@@ -83,6 +96,17 @@ main {
   h1 {
     font-size: 110%;
   }
+
+  article {
+    width: 50%;
+    float: left;
+  }
+  article:last-of-type {
+    text-align: right;
+    padding: .67em 0;
+
+  }
+  @include clearfix;
 }
 
 .center {
@@ -125,3 +149,4 @@ main {
   color: maroon;
   font-weight: bold;
 }
+

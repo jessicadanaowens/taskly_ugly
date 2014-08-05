@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get "about" => "about#about"
   get "task_lists/new" => "task_lists#new"
   post "task_lists" => "task_lists#create"
+  get "task_lists/:id/edit" => "task_lists#edit"
+  patch "task_lists/:id" => "task_lists#update"
 end

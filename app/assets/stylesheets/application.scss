@@ -84,3 +84,44 @@ main {
     font-size: 110%;
   }
 }
+
+.center {
+  text-align: center;
+}
+
+.notice {
+  border: 1px solid green;
+  padding: 1rem;
+  background-color: lightgreen;
+}
+
+.error {
+  border: 1px solid darkred;
+  padding: 1rem;
+  background-color: red;
+  color: white;
+}
+
+.horizontal_list {
+  padding: 0;
+  margin: 0;
+  li {
+    list-style: none;
+    display: inline-block;
+  }
+}
+
+.create_task_form {
+  input[type="submit"] {
+    border-radius: .25em;
+    background-color: blue;
+    color: white;
+    border: 1px solid #404040;
+    padding: .5em;
+  }
+}
+
+.maroon {
+  color: maroon;
+  font-weight: bold;
+}

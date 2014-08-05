@@ -22,4 +22,8 @@ class SessionsController < ApplicationController
     redirect_to signin_path
   end
 
+  def about
+
+  end
+
 end

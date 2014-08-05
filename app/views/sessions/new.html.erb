@@ -1,4 +1,4 @@
-<%= form_for @user, url: signin_path, html: { class: "signin-form" } do |f| %>
+<%= form_for @user, url: signin_path, html: {class: "signin-form"} do |f| %>
   <% f.object.errors.full_messages.each do |error| %>
     <div class="errors">
       <%= error %>
@@ -14,5 +14,6 @@
   </div>
   <div>
     <%= f.submit "Login" %>
+    <%= link_to "About", controller: "about", action: "about" %>
   </div>
 <% end %>

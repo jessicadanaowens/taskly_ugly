@@ -1,0 +1,19 @@
+<h1>Add a Task List</h1>
+<p class="maroon">
+  <% if @task_list.errors.any? %>
+    <% @task_list.errors.messages[:name].each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+</p>
+<%= form_for @task_list, url: task_lists_path, html: {class: "create_task_form"} do |f| %>
+  <div>
+    <%= f.label :name %>
+    <br>
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  <div>
+    <br>
+    <%= f.submit "Create Task List" %>
+  </div>
+<% end %>

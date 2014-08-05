@@ -6,7 +6,7 @@
     <% end %>
   <% end %>
 </p>
-<%= form_for @task_list, url: "/task_lists/#{@task_list.id}", method: :patch, html: {class: "create_task_form"} do |f| %>
+<%= form_for @task_list, html: {class: "create_task_form"} do |f| %>
   <div>
     <%= f.label :name %>
     <br>

@@ -1,0 +1,27 @@
+<div>
+  <section class="task-list">
+    <article>
+      <h1><%= @task_list.name %> - Completed</h1>
+    </article>
+    <article>
+    </article>
+  </section>
+</div>
+<% @task_list.tasks.order(:due_date).each do |task| %>
+  <% if task.complete? %>
+    <div>
+      <section class="task_list_task">
+        <article>
+          <p><%= task.description %> (<%= distance_of_time_in_words(task.due_date, Time.now) %>)</p></article>
+        <article>
+          <ul class="horizontal_list">
+            <li>  <%= form_for [@task_list, task], method: :delete do |f| %>
+                <%= f.submit "Delete" %>
+              <% end %>
+            </li>
+          </ul>
+        </article>
+      </section>
+    </div>
+  <% end %>
+<% end %>

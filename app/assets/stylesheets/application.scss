@@ -14,6 +14,7 @@
 * {
   box-sizing: border-box;
 }
+
 .container {
   width: 960px;
   margin: 0 auto;
@@ -104,8 +105,11 @@ main {
   article:last-of-type {
     text-align: right;
     padding: .67em 0;
-
+    a {
+      margin-left: 1em;
+    }
   }
+
   @include clearfix;
 }
 
@@ -145,8 +149,40 @@ main {
   }
 }
 
+.task_list_task {
+  background-color: #eee;
+  border: 1px solid lightgray;
+  margin: 0 1em 1em 1em;
+  padding: 1em;
+  article {
+    width: 50%;
+    float: left;
+    p {
+      margin: 0;
+    }
+  }
+  article:last-of-type {
+    text-align: right;
+    input[type="submit"] {
+
+    }
+  }
+
+  @include clearfix;
+}
+
 .maroon {
   color: maroon;
   font-weight: bold;
+}
+
+.task_link {
+  color: black;
+  text-decoration: none;
+  &:hover {
+    section {
+      background-color: darken(#eee, 10%);
+    }
+  }
 }
 

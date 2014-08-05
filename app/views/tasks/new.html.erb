@@ -1,0 +1,22 @@
+<h1>Add a task</h1>
+<p class="maroon">
+  <% if @task.errors.present? %>
+    <% @task.errors.messages[:description].each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+</p>
+<%= form_for [@task_list, @task], html: {class: "create_task_form"} do |f| %>
+  <div>
+    <p><%= f.label :description %></p>
+    <%= f.text_field :description, autofocus: true %>
+  </div>
+  <div>
+    <p><%= f.label :due_date %></p>
+
+    <p><%= select_date %></p>
+  </div>
+  <div>
+    <%= f.submit "Create Task" %>
+  </div>
+<% end %>

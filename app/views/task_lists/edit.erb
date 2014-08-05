@@ -1,6 +1,6 @@
 <h1>Edit a Task List</h1>
 <p class="maroon">
-  <% if @task_list.errors.any? %>
+  <% if @task_list.errors.present? %>
     <% @task_list.errors.messages[:name].each do |error| %>
       <%= error %>
     <% end %>

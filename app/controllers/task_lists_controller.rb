@@ -26,11 +26,14 @@ class TaskListsController < ApplicationController
 
   def update
     @task_list = TaskList.find(params[:id])
-    @task_list.update(
+    if @task_list.update(
       name: params[:task_list][:name]
     )
-    flash[:notice] = "Your task list was successfully updated!"
-    redirect_to root_path
+      flash[:notice] = "Your task list was successfully updated!"
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
 end

@@ -157,14 +157,20 @@ main {
   article {
     width: 50%;
     float: left;
+    line-height: 100%;
     p {
       margin: 0;
     }
   }
+  article:first-of-type {
+    line-height: 2em;
+  }
   article:last-of-type {
     text-align: right;
     input[type="submit"] {
-
+      height: 2em;
+      line-height: 2em;
+      padding: 0 .5em;
     }
   }
 
@@ -186,3 +192,16 @@ main {
   }
 }
 
+.delete_link {
+  display: inline;
+  margin-left: 1em;
+  input[type="submit"] {
+    color: blue;
+    text-decoration: underline;
+    background: transparent;
+    border: none;
+    &:visited {
+      color: indigo;
+    }
+  }
+}

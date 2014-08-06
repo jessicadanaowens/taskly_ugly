@@ -44,4 +44,12 @@ class TaskListsController < ApplicationController
     @task_list = TaskList.find(params[:id])
   end
 
+  def destroy
+    @task_list = TaskList.find(params[:id])
+    @task_list.tasks.destroy_all
+    @task_list.destroy
+    flash[:notice] = "Task List was deleted successfully!"
+    redirect_to root_path
+  end
+
 end

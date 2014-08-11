@@ -29,7 +29,7 @@
       </article>
     </section>
   </div>
-  <% if task_list.tasks.all.empty? %>
+  <% if task_list.tasks.where(complete?: false).empty? %>
     <div>
       <section class="task_list_task center">
           <span class="center"><em>Nothing here to see!</em></span>
@@ -44,7 +44,7 @@
             <span><%= task.description %> (<%= distance_of_time_in_words(task.due_date, Time.now) %>) - <strong><%= task.assigned_to_user(task.assigned_to_id) %></strong></span></article>
           <article>
             <ul class="horizontal_list">
-              <li><%= form_for [task_list, task] do |f| %>
+              <li><%= form_for [task_list, task], url: complete_task_list_task_path(task_list.id, task.id) do |f| %>
                   <%= f.submit "Complete" %>
                 <% end %>
               </li>

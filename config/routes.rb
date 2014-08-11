@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   get "about" => "about#about"
 
   resources :task_lists do
-    resources :tasks
+    resources :tasks, except: :update
   end
 
-  get "task_lists/:id/completed" => "task_lists#completed", as: :completed_task_list_tasks
+  patch "/task_lists/:task_list_id/tasks/:id/complete" => "completed_tasks#create", as: :complete_task_list_task
+
+  get "task_lists/:id/completed" => "completed_tasks#index", as: :completed_task_list_tasks
 end

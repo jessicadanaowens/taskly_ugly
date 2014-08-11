@@ -10,6 +10,8 @@ $(document).ready(function () {
   $('#task_date_year option').each(function() {
     if (this.value < y) {
       this.remove();
-    };
-  })
-})
+    }
+  });
+
+
+});

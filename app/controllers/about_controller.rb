@@ -1,7 +1,7 @@
-class AboutController < ApplicationController
-  skip_before_action :ensure_current_user
+class AboutController < ActionController::Base
 
   def about
-
+    render layout: "application", locals: {current_user: nil}
   end
+  
 end

@@ -5,57 +5,63 @@
   </ul>
 </div>
 <% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
+  <div class="notice"><%=image_tag "x.jpeg" %><%= flash[:notice] %></div>
 <% end %>
-<% @task_lists.each do |task_list| %>
-  <div>
-    <section class="task-list">
-      <article>
-        <ul class="horizontal_list">
-          <li>
-            <%= link_to task_list_path(task_list.id), class: 'task_link' do %>
-              <h1><%= task_list.name %></h1>
+
+
+
+  <% @task_lists.each do |task_list| %>
+      <section class="task-list">
+        <article>
+          <ul class="horizontal_list">
+            <li><h1><span class="arrow_img"><%= image_tag "arrow.png" %></span>
+              <%= link_to task_list_path(task_list.id), class: 'task_link' do %>
+                <%= task_list.name %></h1>
+              <% end %>
+            </li>
+          </ul>
+        </article>
+        <article>
+          <%= link_to "Completed", completed_task_list_tasks_path(task_list.id) %>
+          <%= form_for task_list, method: :delete, html: {class: 'delete_link'} do |f| %>
+            <%= f.submit "Delete" %>
+          <% end %>
+          <%= link_to "Edit", edit_task_list_path(task_list.id) %>
+          <%= link_to "+ Add Task", new_task_list_task_path(task_list.id) %>
+        </article>
+
+
+        <div class="modal">
+          <% if task_list.tasks.where(complete?: false).empty? %>
+            <div>
+              <section class="task_list_task center">
+                <span class="center"><em>Nothing here to see!</em></span>
+              </section>
+            </div>
+          <% end %>
+          <% task_list.tasks.order(:due_date).each do |task| %>
+            <% unless task.complete? %>
+              <div class="content_panel">
+                <section class="task_list_task" data-hours-til-due="<%=Time.now %>">
+                  <article>
+                    <span><%= task.description %> (<%= distance_of_time_in_words(task.due_date, Time.now) %>
+                      ) - <strong><%= task.assigned_to_user(task.assigned_to_id) %></strong></span></article>
+                  <article>
+                    <ul class="horizontal_list">
+                      <li><%= form_for [task_list, task], url: complete_task_list_task_path(task_list.id, task.id) do |f| %>
+                          <%= f.submit "Complete" %>
+                        <% end %>
+                      </li>
+                      <li>  <%= form_for [task_list, task], method: :delete do |f| %>
+                          <span class= "submit_button>"> <%= f.submit "Delete" %> </span>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </article>
+                </section>
+              </div>
             <% end %>
-          </li>
-        </ul>
-      </article>
-      <article>
-        <%= link_to "Completed", completed_task_list_tasks_path(task_list.id) %>
-        <%= form_for task_list, method: :delete, html: {class: 'delete_link'} do |f| %>
-          <%= f.submit "Delete" %>
-        <% end %>
-        <%= link_to "Edit", edit_task_list_path(task_list.id) %>
-        <%= link_to "+ Add Task", new_task_list_task_path(task_list.id) %>
-      </article>
-    </section>
-  </div>
-  <% if task_list.tasks.where(complete?: false).empty? %>
-    <div>
-      <section class="task_list_task center">
-          <span class="center"><em>Nothing here to see!</em></span>
-      </section>
-    </div>
-  <% end %>
-  <% task_list.tasks.order(:due_date).each do |task| %>
-    <% unless task.complete? %>
-      <div>
-        <section class="task_list_task">
-          <article>
-            <span><%= task.description %> (<%= distance_of_time_in_words(task.due_date, Time.now) %>) - <strong><%= task.assigned_to_user(task.assigned_to_id) %></strong></span></article>
-          <article>
-            <ul class="horizontal_list">
-              <li><%= form_for [task_list, task], url: complete_task_list_task_path(task_list.id, task.id) do |f| %>
-                  <%= f.submit "Complete" %>
-                <% end %>
-              </li>
-              <li>  <%= form_for [task_list, task], method: :delete do |f| %>
-                  <%= f.submit "Delete" %>
-                <% end %>
-              </li>
-            </ul>
-          </article>
-        </section>
+          <% end %>
       </div>
-    <% end %>
+    </section>
   <% end %>
-<% end %>

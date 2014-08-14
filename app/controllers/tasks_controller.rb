@@ -6,12 +6,18 @@ class TasksController < ApplicationController
   end
 
   def create
+
+    puts "*"*80
+    puts params[:task][:due_date]
+    puts "*"*80
     @task = Task.new(
       task_list_id: params[:task_list_id],
       description: params[:task][:description],
-      due_date: Task.format_date(params[:task_date]),
+      due_date: params[:task][:due_date],
       assigned_to_id: params[:task][:assigned_to_id]
     )
+
+
     if @task.save
       flash[:notice] = "Task was created successfully!"
       redirect_to root_path

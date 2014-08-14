@@ -205,3 +205,36 @@ main {
     }
   }
 }
+
+
+
+.modal {
+  height: 100%;
+  width: 100%;
+}
+
+img {
+  height: 20px;
+}
+
+.arrow_img {
+  display: inline-block;
+}
+
+img.active {
+  transform: rotate(90deg);
+
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
+
+.disabled_button {
+  opacity: 0.3;
+  background-color:red;
+}
+
+
+
+

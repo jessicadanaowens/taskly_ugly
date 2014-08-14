@@ -1,7 +1,7 @@
 <h1>Add a task</h1>
 <p class="maroon">
   <% if @task.errors.any? %>
-    <% @task.errors.messages[:description].each do |error| %>
+    <% @task.errors.full_messages.each do |error| %>
       <%= error %>
     <% end %>
   <% end %>
@@ -13,8 +13,8 @@
   </div>
   <div>
     <p><%= f.label :due_date %></p>
-
-    <p><%= select_date Time.now, prefix: 'task_date' %></p>
+    <p><%= f.text_field :due_date, class: "form-field", id: "datepicker" %></p>
+    <!--<p> select_date Time.now, prefix: 'task_date' </p>-->
   </div>
   <div>
     <p><%= f.label :assigned_to_id %></p>
